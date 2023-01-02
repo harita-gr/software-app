@@ -14,9 +14,9 @@ const HeaderMobile = ({ links }) => {
     <React.Fragment>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <List>
-          {links.map((item) => {
+          {links.map((item, index) => {
             return (
-              <ListItemButton>
+              <ListItemButton onClick={() => setOpen(false)} key={index}>
                 <ListItemText>{item}</ListItemText>
               </ListItemButton>
             );
