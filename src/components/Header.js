@@ -1,47 +1,75 @@
 import React from "react";
-import { AppBar, Toolbar, Box, Tabs, Tab, Button, Link, Typography } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Tabs,
+  Tab,
+  Button,
+  Link,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import ApiIcon from "@mui/icons-material/Api";
+import HeaderMobile from "./HeaderMobile";
 
 const links = ["Products", "Solution", "Pricing", "Enterprise"];
 const Header = () => {
+  const isMatch = useMediaQuery(useTheme().breakpoints.down("md"));
   return (
     <AppBar sx={{ bgcolor: "transparent", boxShadow: 0, position: "sticky" }}>
-      <Toolbar>
-        <Box sx={{ display: "flex", width: "100%", alignItems: "center" }}>
-          {/* Logo */}
-          <ApiIcon sx={{ color: "black" }} />
-
-          {/* Links */}
-          <Box>
-            <Tabs sx={{ textDecoration: "none" }} component={Link}>
-              {links.map((link, index) => (
-                <Tab
-                  sx={{
-                    fontWeight: "bold",
-                    textDecoration: "none",
-                    ":hover": {
-                      textDecoration: "underline",
-                      textUnderlineOffset: "5px",
-                    },
-                  }}
-                  key={index}
-                  label={link}
-                />
-              ))}
-            </Tabs>
-          </Box>
-
-          {/* Buttons */}
-          <Box sx={{ display: "flex", marginLeft: "auto" }}>
-            <Button sx={{ mr: 2 }} variant="outlined">
-              Talk to Us
-            </Button>
-            <Button sx={{ mr: 2 }} variant="contained">
-              Try for Free
-            </Button>
-          </Box>
+      {isMatch ? (
+        <Box display={"flex"}>
+          <ApiIcon sx={{ color: "black", padding: 1 }} />
+          <Typography
+            variant="h6"
+            fontFamily={"fantasy"}
+            sx={{ color: "black", padding: 0.5 }}
+          >
+            CodeEnv
+          </Typography>
+          <HeaderMobile links={links} />
         </Box>
-      </Toolbar>
+      ) : (
+        <Toolbar>
+          <Box sx={{ display: "flex", width: "100%", alignItems: "center" }}>
+            {/* Logo */}
+            <ApiIcon sx={{ color: "black" }} />
+
+            {/* Links */}
+            <Box>
+              <Tabs sx={{ textDecoration: "none" }} component={Link}>
+                {links.map((link, index) => (
+                  <Tab
+                    sx={{
+                      fontWeight: "bold",
+                      textDecoration: "none",
+                      ":hover": {
+                        textDecoration: "underline",
+                        textUnderlineOffset: "5px",
+                      },
+                    }}
+                    key={index}
+                    label={link}
+                  />
+                ))}
+              </Tabs>
+            </Box>
+
+            {/* Buttons */}
+            <Box sx={{ display: "flex", marginLeft: "auto" }}>
+              <Button sx={{ mr: 2 }} variant="outlined">
+                Talk to Us
+              </Button>
+              <Button sx={{ mr: 2 }} variant="contained">
+                Try for Free
+              </Button>
+            </Box>
+          </Box>
+        </Toolbar>
+      )}
+
       <Box width="100%" height="100vh">
         <video
           width={"100%"}
