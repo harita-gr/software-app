@@ -1,10 +1,13 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 
 const ContentItem = ({ title, description, img, swap }) => {
+  const isMatch = useMediaQuery(useTheme().breakpoints.down("md"));
+
   return (
     <Box
       display="flex"
+      flexDirection={isMatch ? "column" : "row"}
       padding={10}
       justifyContent="space-between"
       alignItems="center"
@@ -33,7 +36,7 @@ const ContentItem = ({ title, description, img, swap }) => {
             src={img}
             alt={title}
             loading="lazy"
-            width="50%"
+            width={isMatch ? "100%" : "50%"}
             style={{
               boxShadow: "10px 10px 20px #ccc",
               marginLeft: "10%",
@@ -48,7 +51,7 @@ const ContentItem = ({ title, description, img, swap }) => {
             src={img}
             alt={title}
             loading="lazy"
-            width="50%"
+            width={isMatch ? "100%" : "50%"}
             style={{
               boxShadow: "10px 10px 20px #ccc",
               marginRight: "10%",
