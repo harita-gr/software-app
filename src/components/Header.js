@@ -12,6 +12,8 @@ import {
   useTheme,
 } from "@mui/material";
 import ApiIcon from "@mui/icons-material/Api";
+import EmailIcon from "@mui/icons-material/Email";
+import GoogleIcon from "@mui/icons-material/Google";
 import HeaderMobile from "./HeaderMobile";
 
 const links = ["Products", "Solution", "Pricing", "Enterprise"];
@@ -86,6 +88,7 @@ const Header = () => {
             variant="h4"
             color="black"
             textAlign={"center"}
+            fontSize={{ lg: 30, md: 24, sm: 18, xs: 14 }}
           >
             Build your Softwares Hassle Free and Build Top Notch Quality
           </Typography>
@@ -97,11 +100,16 @@ const Header = () => {
           margin="auto"
           marginTop={5}
         >
-          <Button sx={{ mr: 3 }} variant="outlined">
-            Sign Up with Email
+          <Button endIcon={<EmailIcon />} sx={{ mr: 3 }} variant="outlined">
+            Sign Up
           </Button>
-          <Button sx={{ ml: 3 }} variant="contained">
-            Sign Up with Google
+          <Button
+            endIcon={<GoogleIcon />}
+            sx={{ ml: 3 }}
+            variant="contained"
+            color="error"
+          >
+            Sign Up
           </Button>
         </Box>
       </Box>
